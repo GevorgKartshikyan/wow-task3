@@ -1,25 +1,20 @@
 import React, {FC} from "react";
+import {partners} from "../helpers/data";
 import Carousel from "nuka-carousel";
-import ReviewCard from "../components/ReviewCard";
-import {reviews} from "../helpers/data";
-
-const Reviews: FC = () => {
+const Partners: FC = () => {
+    console.log(partners[0].photo)
     return (
-        <div className='review'>
-            <div className='container'>
-                <div className='text__block'>
-                    <h3 className='review__title'>Reviews</h3>
-                    <p className='review__desc'>Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry. Lorem Ipsum has been
-                        the industry's standard dummy text ever since the 1500s
-                    </p>
-                </div>
-                <div style={{width: '100%', marginTop: 60}}>
+        <div className='partners'>
+            <div className="container">
+                <div>
+                    <h3 className='partners__title'>
+                        Our partners
+                    </h3>
                     <Carousel
+                        style={{marginTop:60}}
                         wrapAround={true}
-                        autoplay
-                        slidesToShow={3}
-                        renderBottomCenterControls={()=>null}
+                        renderBottomCenterControls={() => null}
+                        slidesToShow={7}
                         renderCenterRightControls={(props) => <div
                             className="slider__item__button"
                             onClick={() => props.nextSlide()}
@@ -51,21 +46,18 @@ const Reviews: FC = () => {
                             </svg>
                         </div>}
                     >
-                        {reviews.map((e) => (
-                            <ReviewCard
-                                key={e.id}
-                                id={e.id}
-                                comment={e.comment}
-                                name={e.name}
-                                photo={e.photo}
-                                stars={e.stars}
-                                surname={e.surname}
-                            />
-                        ))}
+                        {partners.map((e) => (
+                            <a target='_blank' href="https://logoipsum.com/">
+                                <div key={e.id} className='partners__block'>
+                                    <img src={e.photo} alt={e.name} className='partners__image'/>
+                                    <p className='partners__name'>{e.name}</p>
+                                </div>
+                            </a>
+                            ))}
                     </Carousel>
                 </div>
             </div>
         </div>
     )
 }
-export default Reviews
+export default Partners
